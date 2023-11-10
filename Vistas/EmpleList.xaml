@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Convertidor="clr-namespace:Ejercicio1_4.Converters"
+             x:Class="Ejercicio1_4.Vistas.ListaEmpleados"
+             Title="ListaEmpleados">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Agregar Persona"
+                  x:Name="toolmenu"
+                  Order="Primary"
+                  Priority="0"
+                  Clicked="toolmenu_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Convertidor:ByteArrayToImage x:Key="ByteToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="listapersonas" 
+                   ItemTapped="liestapersonas_ItemTapped"
+                   Margin="0,10,0,0">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <StackLayout Orientation="Vertical" Grid.Column="1">
+                                    <Label Text="{Binding nombres}" TextColor="Black" FontSize="16" />
+                                    <Label Text="{Binding descripcion}" TextColor="Black" FontSize="16" />
+                                </StackLayout>
+                                <Image Source="{Binding imagen, Converter={StaticResource ByteToImage}}" Grid.Column="0" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
